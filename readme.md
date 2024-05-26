@@ -2,7 +2,7 @@
 
 ## Sơ đồ
 
-![image](./basic-handling-exception-validation.jpg)
+![image](./basic-exception-handling-and-validation.jpg)
 
 
 ## Các exceptions có thể xảy ra
