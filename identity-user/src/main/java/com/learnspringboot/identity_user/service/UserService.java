@@ -18,6 +18,15 @@ public class UserService {
 
     // CREATE
     public User createUser(UserCreationRequest request) {
+
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new RuntimeException("Username existed.");
+        }
+
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email existed.");
+        }
+
         User user = User.builder()
             .username(request.getUsername())
             .email(request.getEmail())
