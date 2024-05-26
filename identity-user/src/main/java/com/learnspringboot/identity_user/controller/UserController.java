@@ -12,6 +12,9 @@ import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
 import com.learnspringboot.identity_user.dto.request.UserUpdateRequest;
 import com.learnspringboot.identity_user.entity.User;
 import com.learnspringboot.identity_user.service.UserService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,8 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
-
-
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -32,7 +33,7 @@ public class UserController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserCreationRequest request ) {
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserCreationRequest request ) {
         User user = userService.createUser(request);
         
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
@@ -53,7 +54,7 @@ public class UserController {
     
     // UPDATE
     @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+    public ResponseEntity<User> updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
         User user = userService.updateUser(userId, request);
         
         return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
