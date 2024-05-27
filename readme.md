@@ -4,6 +4,57 @@
 
 ![image](./advance-handing-exceptionjpg.jpg)
 
+## Cấu trúc thư mục
+
+```bash
+    +---src
+    |   +---main
+    |   |   +---java
+    |   |   |   \---com
+    |   |   |       \---learnspringboot
+    |   |   |           \---identity_user
+    |   |   |               |   IdentityUserApplication.java
+    |   |   |               |
+    |   |   |               +---controller
+    |   |   |               |       UserController.java
+    |   |   |               |
+    |   |   |               +---dto
+    |   |   |               |   +---request
+    |   |   |               |   |       UserCreationRequest.java
+    |   |   |               |   |       UserUpdateRequest.java
+    |   |   |               |   |
+    |   |   |               |   \---response
+    |   |   |               |           ApiResponse.java
+    |   |   |               |
+    |   |   |               +---entity
+    |   |   |               |       User.java
+    |   |   |               |
+    |   |   |               +---exception
+    |   |   |               |       AppException.java
+    |   |   |               |       ErrorCode.java
+    |   |   |               |       GlobalExceptionHandler.java
+    |   |   |               |
+    |   |   |               +---repository
+    |   |   |               |       UserRepository.java
+    |   |   |               |
+    |   |   |               \---service
+    |   |   |                       UserService.java
+    |   |   |
+    |   |   \---resources
+    |   |       |   application.yml
+    |   |       |
+    |   |       +---static
+    |   |       \---templates
+    |   \---test
+    |       \---java
+    |           \---com
+    |               \---learnspringboot
+    |                   \---identity_user
+    |                           IdentityUserApplicationTests.java
+```
+
+
+
 ## Đặt vấn đề
 
 Ở bài trước, thay vì trả về các response mặc định của hệ thống nếu có ngoại lệ xảy ra, ta đã có thể gom các xử lý ngoại lệ vào một class tên `GlobalExceptionHandler` và gửi trả về response một cách chủ động hơn.
