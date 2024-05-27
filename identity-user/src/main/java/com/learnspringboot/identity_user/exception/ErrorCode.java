@@ -1,10 +1,13 @@
 package com.learnspringboot.identity_user.exception;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public enum ErrorCode {
     USER_EXISTED(1001, "User existed."),
     EMAIL_EXISTED(1002, "Email existed."),
@@ -15,6 +18,6 @@ public enum ErrorCode {
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error."),
     INVALID_MESSAGE(8888, "Invalid message key.")
     ;
-    private int code;
-    private String message;
+    int code;
+    String message;
 }

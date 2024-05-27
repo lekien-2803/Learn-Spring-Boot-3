@@ -7,19 +7,27 @@ import org.springframework.stereotype.Service;
 
 import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
 import com.learnspringboot.identity_user.dto.request.UserUpdateRequest;
+import com.learnspringboot.identity_user.dto.response.UserResponse;
 import com.learnspringboot.identity_user.entity.User;
 import com.learnspringboot.identity_user.exception.AppException;
 import com.learnspringboot.identity_user.exception.ErrorCode;
+import com.learnspringboot.identity_user.mapper.UserMapper;
 import com.learnspringboot.identity_user.repository.UserRepository;
+
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
+    UserMapper userMapper;
 
     // CREATE
-    public User createUser(UserCreationRequest request) {
+    public UserResponse createUser(UserCreationRequest request) {
 
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new AppException(ErrorCode.USER_EXISTED);
@@ -29,17 +37,9 @@ public class UserService {
             throw new AppException(ErrorCode.EMAIL_EXISTED);
         }
 
-        User user = User.builder()
-            .username(request.getUsername())
-            .email(request.getEmail())
-            .password(request.getPassword())
-            .firstName(request.getFirstName())
-            .lastName(request.getLastName())
-            .dob(request.getDob())
-            .status(request.isStatus())
-            .build();
+        User user = userMapper.toUser(request);
 
-        return userRepository.save(user);
+        return userMapper.toUserResponse(userRepository.save(user));
     }
 
     // READ
@@ -47,29 +47,28 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(String id) {
-        return userRepository.findById(id)
-            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+    public UserResponse getUserById(String id) {
+        return userMapper.toUserResponse(userRepository.findById(id)
+        .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND)));
     }
 
     // UPDATE
-    public User updateUser(String id, UserUpdateRequest request) {
-        User user = getUserById(id);
+    public UserResponse updateUser(String id, UserUpdateRequest request) {
+        User user = userRepository.findById(id)
+        .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        user.setPassword(request.getPassword());
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setDob(request.getDob());
+        userMapper.updateUser(user, request);
 
-        return userRepository.save(user);
+        return userMapper.toUserResponse(userRepository.save(user));
     }
     
-    public User changeStatusUser(String id, boolean status) {
-        User user = getUserById(id);
+    public UserResponse changeStatusUser(String id, boolean status) {
+        User user = userRepository.findById(id)
+        .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
         user.setStatus(status);
 
-        return userRepository.save(user);
+        return userMapper.toUserResponse(userRepository.save(user));
     }
 
     // DELETE
