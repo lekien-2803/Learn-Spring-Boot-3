@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
 import com.learnspringboot.identity_user.dto.request.UserUpdateRequest;
 import com.learnspringboot.identity_user.entity.User;
+import com.learnspringboot.identity_user.exception.AppException;
+import com.learnspringboot.identity_user.exception.ErrorCode;
 import com.learnspringboot.identity_user.repository.UserRepository;
 
 
@@ -20,11 +22,11 @@ public class UserService {
     public User createUser(UserCreationRequest request) {
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("Username existed.");
+            throw new AppException(ErrorCode.USER_EXISTED);
         }
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email existed.");
+            throw new AppException(ErrorCode.EMAIL_EXISTED);
         }
 
         User user = User.builder()
@@ -47,7 +49,7 @@ public class UserService {
 
     public User getUserById(String id) {
         return userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found."));
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
     }
 
     // UPDATE

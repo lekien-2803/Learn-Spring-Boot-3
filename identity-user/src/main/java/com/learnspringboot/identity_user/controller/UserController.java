@@ -3,13 +3,12 @@ package com.learnspringboot.identity_user.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
 import com.learnspringboot.identity_user.dto.request.UserUpdateRequest;
+import com.learnspringboot.identity_user.dto.response.ApiResponse;
 import com.learnspringboot.identity_user.entity.User;
 import com.learnspringboot.identity_user.service.UserService;
 
@@ -33,10 +32,13 @@ public class UserController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody @Valid UserCreationRequest request ) {
+    public ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request ) {
         User user = userService.createUser(request);
+        ApiResponse apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(user);
         
-        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        return apiResponse;
     }
     
     // READ
@@ -46,32 +48,46 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable String userId) {
+    public ApiResponse<User> getUserById(@PathVariable String userId) {
         User user = userService.getUserById(userId);
+        ApiResponse apiResponse = new ApiResponse<>();
 
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        apiResponse.setResult(user);
+
+        return apiResponse;
     }
     
     // UPDATE
     @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
+    public ApiResponse<User> updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
         User user = userService.updateUser(userId, request);
-        
-        return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
+        ApiResponse apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(user);
+
+        return apiResponse;
     }
 
     @PatchMapping("/{userId}")
-    public ResponseEntity<User> changeUserStatus(@PathVariable String userId, @RequestParam("status") boolean status) {
+    public ApiResponse<User> changeUserStatus(@PathVariable String userId, @RequestParam("status") boolean status) {
         User user = userService.changeStatusUser(userId, status);
 
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        ApiResponse apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(user);
+
+        return apiResponse;
     }
 
     // DELETE
     @DeleteMapping("/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable String userId) {
+    public ApiResponse<String> deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
 
-        return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
+        ApiResponse apiResponse = new ApiResponse<>();
+
+        apiResponse.setMessage("User has been deleted.");
+
+        return apiResponse;
     }
 }

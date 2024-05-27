@@ -17,7 +17,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserUpdateRequest {
     
-    @Size(min = 8, message = "password must be at least 8 character")
+    @Size(min = 8, message = "INVALID_PASSWORD")
     String password;
 
     String firstName;
