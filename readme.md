@@ -7,45 +7,45 @@
 ## Cấu trúc thư mục
 
 ```bash
-├───src
-│   ├───main
-│   │   ├───java
-│   │   │   └───com
-│   │   │       └───learnspringboot
-│   │   │           └───identity_user
-│   │   │               │   IdentityUserApplication.java
-│   │   │               │
-│   │   │               ├───controller
-│   │   │               │       UserController.java
-│   │   │               │
-│   │   │               ├───dto
-│   │   │               │   └───request
-│   │   │               │           UserCreationRequest.java
-│   │   │               │           UserUpdateRequest.java
-│   │   │               │
-│   │   │               ├───entity
-│   │   │               │       User.java
-│   │   │               │
-│   │   │               ├───exception
-│   │   │               │       GlobalExceptionHandler.java
-│   │   │               │
-│   │   │               ├───repository
-│   │   │               │       UserRepository.java
-│   │   │               │
-│   │   │               └───service
-│   │   │                       UserService.java
-│   │   │
-│   │   └───resources
-│   │       │   application.yml
-│   │       │
-│   │       ├───static
-│   │       └───templates
-│   └───test
-│       └───java
-│           └───com
-│               └───learnspringboot
-│                   └───identity_user
-│                           IdentityUserApplicationTests.java
++---src
+|   +---main
+|   |   +---java
+|   |   |   \---com
+|   |   |       \---learnspringboot
+|   |   |           \---identity_user
+|   |   |               |   IdentityUserApplication.java
+|   |   |               |
+|   |   |               +---controller
+|   |   |               |       UserController.java
+|   |   |               |
+|   |   |               +---dto
+|   |   |               |   \---request
+|   |   |               |           UserCreationRequest.java
+|   |   |               |           UserUpdateRequest.java
+|   |   |               |
+|   |   |               +---entity
+|   |   |               |       User.java
+|   |   |               |
+|   |   |               +---exception
+|   |   |               |       GlobalExceptionHandler.java
+|   |   |               |
+|   |   |               +---repository
+|   |   |               |       UserRepository.java
+|   |   |               |
+|   |   |               \---service
+|   |   |                       UserService.java
+|   |   |
+|   |   \---resources
+|   |       |   application.yml
+|   |       |
+|   |       +---static
+|   |       \---templates
+|   \---test
+|       \---java
+|           \---com
+|               \---learnspringboot
+|                   \---identity_user
+|                           IdentityUserApplicationTests.java
 ```
 
 
