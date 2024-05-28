@@ -15,6 +15,8 @@ public enum ErrorCode {
     INVALID_USERNAME(1004, "Username must be at least 3 characters."),
     INVALID_PASSWORD(1005, "Password must be at least 8 characters."),
     INVALID_EMAIL(1006, "Invalid email."),
+    UNAUTHENTICATED(1007, "Unauthenticated."),
+    CAN_NOT_CREATE_TOKEN(1008, "Can not create token."),
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error."),
     INVALID_MESSAGE(8888, "Invalid message key.")
     ;

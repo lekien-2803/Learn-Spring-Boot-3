@@ -16,3 +16,6 @@ spring:
 springdoc:
     swagger-ui:
         path: /swagger-ui.html
+
+jwt:
+    signerKey: "rjg/Y+Tyw5HR4Hyf9D1njqZz0PBNJknx2Cer2Mks5DSXiwONtcT9offsPYSpo+Sf"
