@@ -2,7 +2,6 @@ package com.learnspringboot.identity_user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
