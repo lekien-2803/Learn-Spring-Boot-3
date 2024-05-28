@@ -38,7 +38,7 @@ public class UserController {
     @PostMapping
     public ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request ) {
         UserResponse user = userService.createUser(request);
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
         
@@ -54,7 +54,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public ApiResponse<UserResponse> getUserById(@PathVariable String userId) {
         UserResponse user = userService.getUserById(userId);
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
 
@@ -65,7 +65,7 @@ public class UserController {
     @PutMapping("/{userId}")
     public ApiResponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
         UserResponse user = userService.updateUser(userId, request);
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
 
@@ -76,7 +76,7 @@ public class UserController {
     public ApiResponse<UserResponse> changeUserStatus(@PathVariable String userId, @RequestParam("status") boolean status) {
         UserResponse user = userService.changeStatusUser(userId, status);
 
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
 
@@ -88,7 +88,7 @@ public class UserController {
     public ApiResponse<String> deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
 
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<String> apiResponse = new ApiResponse<>();
 
         apiResponse.setMessage("User has been deleted.");
 
