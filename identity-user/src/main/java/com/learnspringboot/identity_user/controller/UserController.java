@@ -2,13 +2,13 @@ package com.learnspringboot.identity_user.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
 import com.learnspringboot.identity_user.dto.request.UserUpdateRequest;
 import com.learnspringboot.identity_user.dto.response.ApiResponse;
+import com.learnspringboot.identity_user.dto.response.UserResponse;
 import com.learnspringboot.identity_user.entity.User;
 import com.learnspringboot.identity_user.service.UserService;
 
@@ -36,9 +36,9 @@ public class UserController {
 
     // CREATE
     @PostMapping
-    public ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request ) {
-        User user = userService.createUser(request);
-        ApiResponse apiResponse = new ApiResponse<>();
+    public ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request ) {
+        UserResponse user = userService.createUser(request);
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
         
@@ -52,9 +52,9 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ApiResponse<User> getUserById(@PathVariable String userId) {
-        User user = userService.getUserById(userId);
-        ApiResponse apiResponse = new ApiResponse<>();
+    public ApiResponse<UserResponse> getUserById(@PathVariable String userId) {
+        UserResponse user = userService.getUserById(userId);
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
 
@@ -63,9 +63,9 @@ public class UserController {
     
     // UPDATE
     @PutMapping("/{userId}")
-    public ApiResponse<User> updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
-        User user = userService.updateUser(userId, request);
-        ApiResponse apiResponse = new ApiResponse<>();
+    public ApiResponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
+        UserResponse user = userService.updateUser(userId, request);
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
 
@@ -73,10 +73,10 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public ApiResponse<User> changeUserStatus(@PathVariable String userId, @RequestParam("status") boolean status) {
-        User user = userService.changeStatusUser(userId, status);
+    public ApiResponse<UserResponse> changeUserStatus(@PathVariable String userId, @RequestParam("status") boolean status) {
+        UserResponse user = userService.changeStatusUser(userId, status);
 
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setResult(user);
 
@@ -88,7 +88,7 @@ public class UserController {
     public ApiResponse<String> deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
 
-        ApiResponse apiResponse = new ApiResponse<>();
+        ApiResponse<String> apiResponse = new ApiResponse<>();
 
         apiResponse.setMessage("User has been deleted.");
 

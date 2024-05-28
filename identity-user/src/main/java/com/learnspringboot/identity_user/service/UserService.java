@@ -2,7 +2,8 @@ package com.learnspringboot.identity_user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.learnspringboot.identity_user.dto.request.UserCreationRequest;
@@ -38,6 +39,10 @@ public class UserService {
         }
 
         User user = userMapper.toUser(request);
+
+        // Mã hóa mật khẩu
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));;
 
         return userMapper.toUserResponse(userRepository.save(user));
     }
