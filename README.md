@@ -66,7 +66,7 @@
 * Mapstruct
 * Lombok Binding Mapstruct
 * Spring Security Crypto 
-* Nimbus JOSE+JWT
+* Nimbus JOSE+JWT (thêm mới)
 
 ## Đặt vấn đề
 
@@ -106,7 +106,7 @@ Token-based authentication là một phương thức xác thực người dùng 
 
 * Xác thực token: Server kiểm tra token trong mỗi yêu cầu. Nếu token hợp lệ và chưa hết hạn, server cho phép yêu cầu tiếp tục, nếu không thì yêu cầu bị từ chối.
 
-### Sử dụng JWT
+### JWT là gì?
 
 JWT là một chuẩn token thường được sử dụng trong token-based authentication. JWT chứa ba phần:
 
@@ -132,6 +132,18 @@ JWT được mã hóa base64, làm cho nó dễ dàng truyền tải qua các gi
 * Quản Lý Phiên Làm Việc Hiệu Quả: JWT có thể chứa thời gian hết hạn (expiration time), giúp dễ dàng quản lý phiên làm việc của người dùng.
 
 * Lưu Trữ An Toàn Trên Client: JWT có thể được lưu trữ an toàn trong các cookie HTTP-only hoặc local storage của trình duyệt.
+
+## Áp dụng giải pháp
+
+Thêm dependency:
+
+```xml
+<dependency>
+    <groupId>com.nimbusds</groupId>
+    <artifactId>nimbus-jose-jwt</artifactId>
+    <version>9.39.1</version>
+</dependency>
+```
 
 ### Tạo JWT
 
