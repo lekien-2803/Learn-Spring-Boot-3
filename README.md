@@ -63,7 +63,7 @@
 * Lombok
 * Mapstruct
 * Lombok Binding Mapstruct
-* Spring Security Crypto
+* Spring Security Crypto (Thêm mới)
 
 ## Đặt vấn đề
 
@@ -91,7 +91,7 @@ Bcrypt là một thuật toán mã hóa mật khẩu mạnh mẽ được thiế
 
 * **Salt Tự Động**: Bcrypt tự động sinh ra một chuỗi salt ngẫu nhiên cho mỗi lần mã hóa, làm cho các băm mật khẩu khác nhau ngay cả khi mật khẩu gốc giống nhau.
 
-## Cách sử dụng
+## Áp dụng giải pháp
 
 Đầu tiên ta cần thêm dependency của spring security core vào file `pom.xml`:
 
