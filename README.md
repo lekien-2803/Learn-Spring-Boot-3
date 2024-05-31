@@ -71,7 +71,7 @@
 * Lombok Binding Mapstruct
 * Spring Security Crypto
 * Nimbus JOSE+JWT
-* Spring Boot Starter OAuth2 Resource Server
+* Spring Boot Starter OAuth2 Resource Server (Thêm mới)
 
 ## Đặt vấn đề
 
